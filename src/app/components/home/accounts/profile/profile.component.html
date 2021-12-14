@@ -1,0 +1,56 @@
+<div class="flex items-center justify-center py-8 px-2 ">
+  <div class="w-full sm:px-6">
+    <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+      <div class="sm:flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">{{user.name}}</p>
+        <div>
+          <button class="mx-2 my-2 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-white">Back</p>
+          </button>
+          <button (click)="onUpdate(user.id)"class="mb-6  mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-indigo-700">Edit</p>
+          </button>
+          <button (click)="onDelete(user.id)"class="mx-2 my-2 bg-gray-100 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-200 rounded text-indigo-700 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Delete</button>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+      <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <div class=" w-full">
+            <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+              Name: {{user.name}}
+            </label>
+          </div>
+
+          <div class="mt-6  w-full">
+            <label for="pass" class="text-sm font-medium leading-none text-indigo-700">
+              Email: {{user.email}}
+            </label>
+          </div>
+          <div class="mt-6  w-full flex text-indigo-700">
+            <div *ngIf="user.userType == 1">
+              <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                User: Student
+              </label>
+            </div>
+            <div *ngIf="user.userType == 2">
+              <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                User: Teacher
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <img src="assets/user.svg" alt="" class="img">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

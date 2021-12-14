@@ -1,0 +1,94 @@
+<div class="flex items-center justify-center py-8 px-2">
+  <div class="w-full sm:px-6">
+    <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+      <div class="sm:flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Edit {{userdata.name}}</p>
+        <div>
+          <button class="inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-white">back</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+      <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <form [formGroup]="user" (ngSubmit)="onSubmit()">
+            <div class="mt-6  w-full">
+              <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                Name
+              </label>
+              <div *ngIf="f.name.touched && f.name.invalid " class="alert alert-danger">
+              <div *ngIf="f.name.errors && f.name.errors.required">name is required.</div>
+              </div>
+              <input aria-labelledby="email"  type="text" [ngModel]="userdata.name" formControlName="name" class="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" >
+            </div>
+            <div>
+              <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                Email
+              </label>
+              <div *ngIf="f.email.touched && f.email.invalid " class="alert alert-danger">
+              <div *ngIf="f.email.errors && f.email.errors.required">Email is required.</div>
+              <div *ngIf="f.email.errors && f.email.errors.email">Please, enter valid email address.</div>
+              </div>
+              <input aria-labelledby="email" value="" type="email" [ngModel]="userdata.email" formControlName="email" class="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+            </div>
+            <div class="mt-6  w-full">
+              <label for="pass" class="text-sm font-medium leading-none text-indigo-700">
+                Password
+              </label>
+              <div *ngIf="f.password.touched && f.password.invalid " class="alert alert-danger">
+              <div *ngIf="f.password.errors && f.password.errors.required">password is required.</div>
+              <div *ngIf="f.password.errors && f.password.hasError('minlength')">password should be at least 6 character.</div>
+              </div>
+              <div class="relative flex items-center justify-center">
+                <input id="pass" type="password"  formControlName="password" class="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+              </div>
+            </div>
+            <div class="mt-6  w-full">
+              <label for="pass" class="text-sm font-medium leading-none text-indigo-700">
+                Confirm password
+              </label>
+              <div *ngIf="f.repassword.touched && f.repassword.invalid " class="alert alert-danger">
+                <div *ngIf="f.repassword.errors.mustMatch">Password and Confirm Password must be match.</div>
+              <div *ngIf="f.repassword.errors && f.repassword.errors.required">Confirmation password is required.</div>
+              </div>
+              <div class="relative flex items-center justify-center">
+                <input id="pass" type="password"  formControlName="repassword"  class="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+              </div>
+            </div>
+            <input type="hidden" class="form-radio" formControlName="id" name="userType" />
+            <div class="mt-6  w-full flex text-indigo-700">
+              User:
+            <div class="pl-4">
+              <label class="inline-flex items-center">
+                <input type="radio" class="form-radio" formControlName="userType" name="userType" value="1" />
+                <span class="ml-2">Student</span>
+              </label>
+            </div>
+            <div class="pl-4">
+              <label class="inline-flex items-center">
+                <input type="radio" class="form-radio" formControlName="userType" name="userType" value="2" />
+                <span class="ml-2">Teacher</span>
+              </label>
+            </div>
+            </div>
+         <div *ngIf="f.password.invalid && f.repassword.invalid && f.email.invalid ">
+           <button type="submit"  style="display:none" class="fade-out-button focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Create a user</button>
+         </div>
+         <div *ngIf="f.password.valid && f.repassword.valid && f.email.valid && f.userType.valid">
+           <button type="submit"   class="fade-in-button focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Edit</button>
+         </div>
+          </form>
+        </div>
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <img src="assets/addUser.svg" alt="" class="img" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

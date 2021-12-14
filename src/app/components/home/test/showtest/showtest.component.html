@@ -1,0 +1,60 @@
+<div class="flex items-center justify-center py-8 px-2 ">
+  <div class="w-full sm:px-6">
+    <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+      <div class="sm:flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">{{exame.title}}</p>
+        <div>
+          <button class="mx-2 my-2 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-white">Back</p>
+          </button>
+          <button (click)="onUpdate(exame.id)"class="mb-6  mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-indigo-700">Edit</p>
+          </button>
+          <button (click)="onDelete(exame.id)"class="mx-2 my-2 bg-gray-100 transition duration-150 ease-in-out focus:outline-none hover:bg-gray-200 rounded text-indigo-700 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+        <h2>Description:{{exame.description}}</h2>
+      <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 pt-6 gap-8">
+
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <div *ngFor="let q of exame.questions">
+            <div class="flex">
+              <div class=" w-full" >
+                <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                  question: {{q.questionTitle}}
+                </label><br>
+                <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                  description: {{q.questionDetail}}
+                </label>
+               </div>
+               <div *ngFor="let o of exame.options">
+                 <div class=" w-full ">
+                   <div *ngIf="o.optionCorrect == '1'">
+                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                       T
+                     </span>
+                   </div>
+                   <div *ngIf="o.optionCorrect == ''">
+                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                       F
+                     </span>
+                   </div>
+                   <label id="email" class="text-sm font-medium leading-none text-indigo-700">
+                     {{o.optionTitle}}
+                   </label>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+
+      </div>
+    </div>
+  </div>
+</div>

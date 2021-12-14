@@ -1,0 +1,82 @@
+<div class="flex items-center justify-center py-8 px-2">
+  <div class="w-full sm:px-6">
+    <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+      <div class="sm:flex items-center justify-between">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Edit Question</p>
+        <div>
+          <button class="inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded" routerLink="../../">
+            <p class="text-sm font-medium leading-none text-white">back</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+      <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 pt-6 gap-8">
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+        <div class="rounded ">
+          <form [formGroup]="exame" novalidate (ngSubmit)="onSubmit(exame)">
+            <!---Survey Section -->
+            <div  formArrayName="sections">
+              <div class="section-container"  *ngFor="let section of getSections(exame); let i = index">
+                <div class="ui raised segments" [formGroupName]="i">
+                  <div class="mb-4">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Exame title" formControlName="sectionTitle">
+                  </div>
+                  <div class="mb-6">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Exame Description"
+                      formControlName="sectionDescription">
+                  </div>
+                  <!-- Question segment -->
+                  <!---Exame Section -->
+                  <br>
+                  <div class="question-container " formArrayName="questions">
+                    <div [formGroupName]="j" *ngFor="let question of getQuestions(section); let j = index">
+                      <div class="mb-4">
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Question" formControlName="questionTitle">
+                      </div>
+                      <div class="mb-4">
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Question description" formControlName="questionDetail">
+                      </div>
+                      <div *ngIf="exame.errors" class="alert alert-danger">
+                        {{ exame.errors }}
+                      </div>
+                      <!-- Option Addation -->
+                      <div formArrayName="options">
+                        <div [formGroupName]="k" *ngFor="let option of getOptions(question); let k=index">
+                          <div class="mb-4 w-full inline-block">
+                            <input   class="w-3/4 option shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Answer" formControlName="optionTitle">
+                              <input type="radio"class="pick" formControlName="optionCorrect" value="1">
+                              correct answer
+                              <span *ngIf="getOptions(question).length > 1" (click)="removeOption(i,j,k)" class="delete inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-2 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded text-white">delete</span>
+
+                          </div>
+                          <!-- <a (click)="remove(i,j)">R Option</a> -->
+                        </div>
+                        <!-- End Option Addition -->
+                        <!-- Option Addtion -->
+                        <!-- End Option Addition -->
+                      </div><br>
+                      <div class="mb-4">
+                        <a (click)="add(i,j)" class="btn mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-6 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">+Option</a>
+                        <a (click)="addQuestion(i)" class="btn mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-6 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Add Question</a>
+                        <span *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(i)" class="btn mx-2 my-2 bg-white transition duration-150 ease-in-out hover:bg-gray-100 hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-6 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-700">Remove Question</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Question -->
+                </div><br>
+              </div>
+            </div>
+            <button type="submit" class="btn inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+              <p class="text-sm font-medium leading-none text-white">Edit</p>
+            </button>
+            <!-- End Section -->
+          </form>
+        </div>
+        <!-- Remove class [ h-24 ] when adding a card block -->
+        <!-- Remove class [ border-gray-300  dark:border-gray-700 border-dashed border-2 ] to remove dotted border -->
+      </div>
+    </div>
+  </div>
+</div>
