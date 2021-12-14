@@ -1,6 +1,6 @@
 # Exams portal 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3,tailwindCSS framework and Ruby on rails 6 backend API.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3 ,tailwindCSS framework and Ruby on rails 6 backend API.
 
 Be aware that the app relies on Rails API which requier an api confirgration with rails.
 
